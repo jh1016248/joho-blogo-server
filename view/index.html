@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>Koa2 Starter</title>
+    <link rel="stylesheet" href="../public/css/uikit.css" />
+    <link rel="stylesheet" href="../public/css/app.css" />
+  </head>
+  <body>
+    <h1>Koa2</h1>
+    <p>Welcome to koa2</p>
+
+    <button id="login">登录</button>
+    
+    <script src="../public/js/jquery.min.js"></script>
+    <script src="../public/js/uikit.min.js"></script>
+    
+    <script>
+      $(() => {
+        const page = {
+          init() {
+            this.event();
+          },
+          event() {
+            $("#login").on('click', () => {
+              this.login()
+            })
+          },
+          login() {
+            const that = this;
+            const user = {name: 'liuxing', passsword: '123456'}
+            $.ajax({
+              url: 'http://localhost:3030/api/user/login',
+              method: 'post',
+              data: user,
+              success(res) {
+                if(res.code == 200) {
+                  localStorage.token = res.token;
+                  that.getCurrent()
+                }
+                else {
+                }
+              }
+            })
+          },
+          getCurrent() {
+            $.ajax({
+              url: 'http://localhost:3030/api/user/current',
+              method: 'get',
+              headers: {
+                Authorization: localStorage.token
+              },
+              success(res) {
+                if(res.code == 200) {
+                }
+              }
+            })
+          },
+        }
+        page.init();
+      })
+    </script>
+  </body>
+</html>
