@@ -6,7 +6,7 @@ module.exports = {
       cwd: './', // 当前工作路径
       node_args: '--harmony', // node的启动模式
       instance_var: 'INSTANCE_ID',
-      exec_mode : "cluster",
+      exec_mode : "fork",
       instances : 1,
       env: {
         NODE_ENV: 'development', // 设置运行环境，此时process.env.NODE_ENV的值就是development

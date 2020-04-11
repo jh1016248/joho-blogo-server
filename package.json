@@ -1,5 +1,5 @@
 {
-  "name": "template",
+  "name": "joho-blog",
   "version": "1.0.0",
   "description": "A Koa2 project",
   "main": "app.js",
