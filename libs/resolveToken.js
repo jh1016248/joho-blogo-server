@@ -22,7 +22,7 @@ module.exports = async (ctx, next) => {
     try{
       const res = await verify(token.split(' ')[1], CONFIG.secret)
       ctx.user = res;
-      await next()
+      next()
     }
     catch(e) {
       if(e.message === 'invalid signature') {
