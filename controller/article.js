@@ -46,3 +46,22 @@ exports.publishArticle = async ( ctx, next ) => {
         }
     } 
 }
+
+exports.delete = async (ctx, next) => {
+    const { id } = ctx.request.body;
+    try{
+        const res = await Article.findByIdAndDelete( id );
+        ctx.body = {
+            code: 200,
+            data: res,
+            message: '删除成功'
+        }
+    }
+    catch (e) {
+        ctx.body = {
+            code: 0,
+            data: e,
+            message: '删除失败'
+        }
+    }
+}

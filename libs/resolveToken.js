@@ -15,7 +15,6 @@ module.exports = async (ctx, next) => {
   if(isWhiteRouter) {
     return await next();
   }
-   
   if(!token) {
     next()
   }
