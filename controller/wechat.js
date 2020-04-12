@@ -1,14 +1,14 @@
 const CONFIG = require('../config/default')
-const superagent = require('superagent');
+// const superagent = require('superagent');
 
 let  wechatData = {};
 
 exports.getToken = async (ctx, next) => {
   if(!wechatData.access_token) {
     const url = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${CONFIG.wechat.appId}&secret=${CONFIG.wechat.secret}`;
-    const tokenRes = await superagent.get(url)
-    const data = JSON.parse(tokenRes.text);
-    wechatData = data
+    // const tokenRes = await superagent.get(url)
+    // const data = JSON.parse(tokenRes.text);
+    // wechatData = data
   }
   else {
     console.log(wechatData)
