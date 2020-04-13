@@ -9,10 +9,10 @@ module.exports = {
       exec_mode : "cluster",
       instances : 1,
       env: {
-        NODE_ENV: 'development', // 设置运行环境，此时process.env.NODE_ENV的值就是development
+        NODE_ENV: 'production', // 设置运行环境，此时process.env.NODE_ENV的值就是development
       },
-      env_production: {
-        NODE_ENV: 'production',
+      env_dev: {
+        NODE_ENV: 'development',
       },
       out_file: './logs/out.log', // 普通日志路径
       error_file: './logs/err.log', // 错误日志路径

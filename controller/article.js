@@ -1,6 +1,6 @@
 const Article = require('../models/article')
 
-exports.getArticles = async ( ctx, next ) => {
+exports.list = async ( ctx, next ) => {
     const { page, size, categoryID } = ctx.request.query;
     const res = await Article.find({ categoryID }).skip(Number(page)).limit(Number(size)).sort({'_id':-1});
     ctx.body = {
@@ -9,7 +9,7 @@ exports.getArticles = async ( ctx, next ) => {
     }
 }
 
-exports.getArticleDetail = async ( ctx, next ) => {
+exports.detail = async ( ctx, next ) => {
     const { id } = ctx.request.query;
     const res = await Article.findById(id);
     ctx.body = {
@@ -18,7 +18,7 @@ exports.getArticleDetail = async ( ctx, next ) => {
     }
 }
 
-exports.publishArticle = async ( ctx, next ) => {
+exports.create = async ( ctx, next ) => {
     const { title, content, thumb = '' } = ctx.request.body;
     const user = ctx.user;
     const now = new Date();

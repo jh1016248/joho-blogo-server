@@ -47,6 +47,7 @@ module.exports = {
         }
     },
     async getCurrent(ctx, next) {
+
         if(ctx.user._id) {
             ctx.body = {
                 code: 200,
