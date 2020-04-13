@@ -9,8 +9,7 @@
     "commit": "git cz"
   },
   "husky": {
-    "hooks": {
-    }
+    "hooks": {}
   },
   "lint-staged": {
     "*.js": [
@@ -40,6 +39,7 @@
     "commitizen": "^2.10.1",
     "crypto": "^1.0.1",
     "cz-conventional-changelog": "^2.1.0",
+    "dayjs": "^1.8.24",
     "eslint": "^5.0.1",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.13.0",

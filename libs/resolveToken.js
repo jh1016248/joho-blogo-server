@@ -16,13 +16,13 @@ module.exports = async (ctx, next) => {
     return await next();
   }
   if(!token) {
-    next()
+    await next()
   }
   else {
     try{
       const res = await verify(token.split(' ')[1], CONFIG.secret)
       ctx.user = res;
-      next()
+      await next()
     }
     catch(e) {
       if(e.message === 'invalid signature') {

@@ -11,23 +11,31 @@ exports.getList = async (ctx, next) => {
 
 exports.publishCategory = async (ctx, next) => {
     const { name } = ctx.request.body;
-    const now = new Date();
-    const category = {
-      name,
-      createTime: now,
+    const oldCategory = await Category.find({ name })
+    if(oldCategory.length) {
+      ctx.body = {
+        code: 0,
+        message: '已存在'
+      }
+      return;
     }
     try{
-        const res = await Category.create(category);
-        ctx.body = {
-            code: 200,
-            data: res._id
-        }
+      const now = new Date();
+      const category = {
+        name,
+        createTime: now,
+      }
+      const res = await Category.create(category);
+      ctx.body = {
+          code: 200,
+          data: res._id
+      }
     }
     catch(e) {
-        ctx.body  = {
-            code: 0,
-            data: e,
-            message: '新增分类失败！'
-        }
+      ctx.body  = {
+          code: 0,
+          data: e,
+          message: '新增分类失败！'
+      }
     } 
 }
