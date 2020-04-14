@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const database = require('../libs/database')
 
 const ArticleSchema = new mongoose.Schema({
-    categoryId: {type: Number},
+    categoryId: {type: String},
 	author: {type: String},
 	authorName: {type: String},
     title: {type: String},

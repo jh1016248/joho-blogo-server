@@ -1,8 +1,9 @@
 const Article = require('../models/article')
 
 exports.list = async ( ctx, next ) => {
-    const { page, size, categoryID } = ctx.request.query;
-    const res = await Article.find({ categoryID }).skip(Number(page)).limit(Number(size)).sort({'_id':-1});
+    const { page, size, categoryId } = ctx.request.query;
+    const query = categoryId ? { categoryId } : {};
+    const res = await Article.find( query ).skip(Number(page)).limit(Number(size)).sort({'_id':-1});
     ctx.body = {
         code: 200,
         data: res
@@ -19,11 +20,11 @@ exports.detail = async ( ctx, next ) => {
 }
 
 exports.create = async ( ctx, next ) => {
-    const { title, content, thumb = '' } = ctx.request.body;
+    const { title, content, thumb = '', categoryId } = ctx.request.body;
     const user = ctx.user;
     const now = new Date();
     const article = {
-        categoryId: 1,
+        categoryId,
         author: user._id,
         authorName: user.account,
         title,
